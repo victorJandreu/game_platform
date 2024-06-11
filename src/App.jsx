@@ -8,7 +8,7 @@ function App() {
   useEffect(() => {
     dispatch(popularGameFetch());
   }, []);
-  //
+  //hola
   console.log(popular);
 
   return (
