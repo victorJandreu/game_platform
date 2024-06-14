@@ -1,0 +1,104 @@
+.card-shadow{
+    width: 100%;
+    min-height: 100vh;
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, .7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+
+    &::-webkit-scrollbar{
+        width: .5rem;
+    }
+    &::-webkit-scrollbar-thumb{
+        width: .5rem;
+        background-color: #ff7676;
+    }
+    &::-webkit-scrollbar-track{
+        background: white;
+    }
+
+}
+
+.detail{
+    width: 80%;
+    border-radius: 1rem;
+    padding: 2rem 5rem;
+    background-color: white;
+    position: absolute;
+    left: 10%;
+    color: black;
+    z-index: 10;
+
+    img{
+        width: 100%;
+    }
+
+
+    @media (max-width: 700px) {
+        width: 86%;
+        padding: 0;
+        left: 7%;
+        padding: 2rem ;
+    }
+
+}
+
+.stats{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    img{
+        width: 2rem;
+        height: 2rem;
+        display: inline;
+    }
+    @media (max-width: 700px) {
+        flex-direction: column; 
+        text-align: center;
+    }
+}
+
+.info{
+    text-align: center;
+}
+
+.platforms{
+    display: flex;
+    justify-content: space-evenly;
+    img{
+        margin-left: 3rem;
+    }
+    @media (max-width: 700px) {
+        img{
+            margin: 0;
+        }
+    }
+}
+
+.media{
+    margin-top: 5rem;
+    img{
+        width: 100%;
+    }
+}
+
+.description{
+    margin: 5rem auto;
+    max-width: 1000px;
+    line-height: 1.5;
+
+}
+
+.gallery{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    width: 100%;
+    margin-inline: auto;
+
+    @media (max-width: 500px) {
+        grid-template-columns: 1fr;
+      }
+}

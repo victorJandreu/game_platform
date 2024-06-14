@@ -1,21 +1,16 @@
-import { useDispatch, useSelector } from "react-redux";
-import { popularGameFetch } from "./store/popularGame/slice";
-import { useEffect } from "react";
+import Home from "./pages/Home";
+import "./styles/app.scss";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
 
 function App() {
-  const dispatch = useDispatch();
-  const { popular, isLoading, error } = useSelector((state) => state.game);
-  useEffect(() => {
-    dispatch(popularGameFetch());
-  }, []);
-  //hola
-  console.log(popular);
-
   return (
-    <>
-      <p>hola</p>
-      <p>adios</p>
-    </>
+    <BrowserRouter basename="game_platform/">
+      
+      <Routes>
+        <Route path={"/"} element={<Home />} />
+        <Route path={"/game/:id"} element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
