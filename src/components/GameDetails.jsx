@@ -12,7 +12,6 @@ import steam from "../img/steam.svg";
 import starEmpty from "../img/star-empty.png";
 import starFull from "../img/star-full.png";
 
-
 export default function GameDetails({ pathId }) {
   const navigate = useNavigate();
   const { details, screen, isLoading } = useSelector(
@@ -22,7 +21,7 @@ export default function GameDetails({ pathId }) {
   //Exit details when click the gray part of the screen
   const exitDetailsHandler = (e) => {
     const element = e.target;
-    if (element.classList.contains("card-shadow")) {
+    if (element.classList.contains("card-shadow") || element.classList.contains("x-close") ) {
       document.body.style.overflow = "auto";
       navigate("/");
     }
@@ -47,24 +46,27 @@ export default function GameDetails({ pathId }) {
 
   //get start
 
-  function getStart () {
-    let startArray = []
-    const rating = Math.floor(details.rating)
-    for(let i = 1; i <= 5; i++){
-      if(i <= rating) {
-        startArray.push(<img key={i} alt="start" src={starFull} />)
+  function getStart() {
+    let startArray = [];
+    const rating = Math.floor(details.rating);
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        startArray.push(<img key={i} alt="start" src={starFull} />);
       } else {
-        startArray.push(<img key={i} alt="start" src={starEmpty} />)
+        startArray.push(<img key={i} alt="start" src={starEmpty} />);
       }
     }
-    return startArray
+    return startArray;
   }
-
 
   //renders
 
   const platformArray = details.platforms.map((data) => (
-    <img key={data.platform.id} src={getPlatform(data.platform.name)} alt={data.platform.name} /> 
+    <img
+      key={data.platform.id}
+      src={getPlatform(data.platform.name)}
+      alt={data.platform.name}
+    />
   ));
 
   const screenArray = screen.results.map((data) => (
@@ -76,6 +78,9 @@ export default function GameDetails({ pathId }) {
       {!isLoading && (
         <motion.div className="card-shadow" onClick={exitDetailsHandler}>
           <motion.div layoutId={pathId} className="detail">
+            <div className="buton-div">
+              <button className="x-close" onClick={exitDetailsHandler}>X</button>
+            </div>
             <div className="stats">
               <div className="rating">
                 <motion.h3 layoutId={`title ${pathId}`}>
