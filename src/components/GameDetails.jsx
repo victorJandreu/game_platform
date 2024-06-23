@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { smallImage } from "../util";
-import { motion } from "framer-motion";
+
 //Image
 import nintendo from "../img/nintendo.svg";
 import xbox from "../img/xbox.svg";

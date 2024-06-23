@@ -1,5 +1,7 @@
 //media resize
 
+import Game from "./components/Game";
+
 export const smallImage = (imagePath, size) => {
   const image = imagePath.match(/media\/screenshots/)
     ? imagePath.replace(
@@ -33,3 +35,7 @@ export const initi = (windowSize) =>{
   }
   return array;
 }
+
+
+
+

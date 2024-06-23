@@ -70,6 +70,6 @@ export const gameScreenshotUrl = (game_id) => `${Base_Url}games/${game_id}/scree
 
 //Search games
 
-export const searchGameUrl = (game_name) => `${Base_Url}games?key=${import.meta.env.VITE_APP_API}&search=${game_name}&page_size=9`
+export const searchGameUrl = (game_name) => `${Base_Url}games?key=${import.meta.env.VITE_APP_API}&search=${game_name}&page_size=6`
 
 
