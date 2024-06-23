@@ -9,6 +9,20 @@ const getCurrentMont = () => {
   }
 };
 
+const getLasTwoMonth = () => {
+  const moth = new Date().getMonth() - 1;
+  if(moth === -1) {
+    return 11
+  }
+  else if(moth === 0) {
+    return 12
+  } else if (moth < 10) {
+    return `0${moth}`;
+  } else {
+    return moth;
+  }
+}
+
 const getCurrentDay = () => {
   const day = new Date().getDate();
   if (day < 10) {
@@ -22,10 +36,13 @@ const getCurrentDay = () => {
 const currentYear = new Date().getFullYear();
 const currentMont = getCurrentMont();
 const currentDay = getCurrentDay();
+const lasMonth = getLasTwoMonth()
 
 const currentDate = `${currentYear}-${currentMont}-${currentDay}`;
 const lasYear = `${currentYear - 1}-${currentMont}-${currentDay}`;
 const nextYear = `${currentYear + 1}-${currentMont}-${currentDay}`;
+const lastMonth = `${currentYear}-${lasMonth}-${currentDay}`;
+
 
 // path to fetch the games
 
@@ -39,7 +56,7 @@ const upcomingGame = `games?key=${
 
 const newGame = `games?key=${
   import.meta.env.VITE_APP_API
-}&dates=${lasYear},${currentDate}&ordering=-released&page_size=10`;
+}&dates=${lastMonth},${currentDate}&ordering=-rating&page_size=10`;
 
 export const popularGamesUrl = () => `${Base_Url}${popular_games}`;
 export const upcomingGameUrl = () => `${Base_Url}${upcomingGame}`;
@@ -53,6 +70,6 @@ export const gameScreenshotUrl = (game_id) => `${Base_Url}games/${game_id}/scree
 
 //Search games
 
-export const searchGameUrl = (game_name) => `${Base_Url}games?key=${import.meta.env.VITE_APP_API}&search=${game_name}&ordering=-rating&page_size=9`
+export const searchGameUrl = (game_name) => `${Base_Url}games?key=${import.meta.env.VITE_APP_API}&search=${game_name}&page_size=9`
 
 

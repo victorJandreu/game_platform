@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import Carrosel from "../components/Carrosel";
 import { initi } from "../util";
 import Nav from "../components/Nav";
+import Swiper from "../components/Swiper";
 
 // components
 import Game from "../components/Game";
@@ -15,15 +16,16 @@ import GameDetails from "../components/GameDetails";
 
 export default function Home() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [popularGameIndex, setPopularGameIndex] = useState(() =>
-    initi(windowWidth)
-  );
   const [newGameIndex, setNewGameIndex] = useState(() => initi(windowWidth));
   const [upcomingIndex, setUpcomingIndex] = useState(() => initi(windowWidth));
   const [searchIndex, setSearchIndex] = useState(() => initi(windowWidth));
   const location = useLocation();
   const pathId = location.pathname.split("/")[2];
   const dispatch = useDispatch();
+  const [intento, setIntento] = useState([]);
+  const [intento2, setIntento2] = useState([]);
+  const [intento3, setIntento3] = useState([]);
+  const [intento4, setIntento4] = useState([]);
 
   const { popular, isLoading, error, newGame, upComing, search } = useSelector(
     (state) => state.game
@@ -46,7 +48,6 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    setPopularGameIndex(initi(windowWidth));
     setNewGameIndex(initi(windowWidth));
     setUpcomingIndex(initi(windowWidth));
     setSearchIndex(initi(windowWidth));
@@ -77,9 +78,6 @@ export default function Home() {
     );
   }
 
-  const gamePopularArray = show(popularGameIndex, popular).map((game) =>
-    giveGame(game)
-  );
   const gameNewArray = show(newGameIndex, newGame).map((game) =>
     giveGame(game)
   );
@@ -90,6 +88,42 @@ export default function Home() {
   const searchGameArray = show(searchIndex, search).map((game) =>
     giveGame(game)
   );
+
+  useEffect(() => {
+    const prueba = popular.map((x) => giveGame(x));
+    if (intento.length === 0 && prueba.length > 0) {
+      setIntento(
+        prueba.map((x, index) => <swiper-slide key={index}>{x}</swiper-slide>)
+      );
+    }
+  }, [popular]);
+
+  useEffect(() => {
+    const prueba = upComing.map((x) => giveGame(x));
+    if (intento2.length === 0 && prueba.length > 0) {
+      setIntento2(
+        prueba.map((x, index) => <swiper-slide key={index}>{x}</swiper-slide>)
+      );
+    }
+  }, [upComing]);
+
+  useEffect(() => {
+    const prueba = newGame.map((x) => giveGame(x));
+    if (intento4.length === 0 && prueba.length > 0) {
+      setIntento4(
+        prueba.map((x, index) => <swiper-slide key={index}>{x}</swiper-slide>)
+      );
+    }
+  }, [newGame]);
+
+  useEffect(() => {
+    const prueba = search.map((x) => giveGame(x));
+    if (search.length > 0) {
+      setIntento3(
+        prueba.map((x, index) => <swiper-slide key={index}>{x}</swiper-slide>)
+      );
+    }
+  }, [search]);
 
   return (
     <>
@@ -109,41 +143,30 @@ export default function Home() {
             {isLoading ? (
               <p className="loading">Loading...</p>
             ) : (
-              <LayoutGroup>
-                <AnimatePresence>
-                  {pathId && <GameDetails pathId={pathId} />}
-                </AnimatePresence>
+              <>
+                <>{pathId && <GameDetails pathId={pathId} />}</>
                 {search.length > 0 && (
-                  <Carrosel
-                    arrayToRender={searchGameArray}
-                    arrayNormal={search}
-                    IndexModificador={setSearchIndex}
-                  >
-                    Search games
-                  </Carrosel>
+                  <>
+                    <h2 className="title">Search games</h2>
+                    <Swiper
+                      render={intento3}
+                      nombreIzq="tresI"
+                      nombreDer="tresD"
+                    />
+                  </>
                 )}
-                <Carrosel
-                  arrayToRender={gamePopularArray}
-                  arrayNormal={popular}
-                  IndexModificador={setPopularGameIndex}
-                >
-                  Popular games
-                </Carrosel>
-                <Carrosel
-                  arrayToRender={gameNewArray}
-                  arrayNormal={newGame}
-                  IndexModificador={setNewGameIndex}
-                >
-                  New games
-                </Carrosel>
-                <Carrosel
-                  arrayToRender={gameUpcomingArray}
-                  arrayNormal={upComing}
-                  IndexModificador={setUpcomingIndex}
-                >
-                  Upcoming games
-                </Carrosel>
-              </LayoutGroup>
+
+                <h2 className="title">Popular games</h2>
+                <Swiper render={intento} nombreIzq="unoI" nombreDer="unoD" />
+                <h2 className="title">Upcoming games</h2>
+                <Swiper render={intento2} nombreIzq="dosI" nombreDer="tresD" />
+                <h2 className="title">New games</h2>
+                <Swiper
+                  render={intento4}
+                  nombreIzq="cuatroI"
+                  nombreDer="cuatroD"
+                />
+              </>
             )}
           </motion.div>
         </>

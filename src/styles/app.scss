@@ -61,3 +61,28 @@ input{
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
 }
+
+//
+
+.container{
+    width: 90vw;
+    margin-inline: auto;
+    padding-block: 1rem;
+}
+
+swiper-container {
+    width: 100%;
+    min-height: 200px;
+    text-align: center;
+}
+
+swiper-slide {
+    background-color: rgb(4 47 46);
+    color: #fff;
+    font-size: 25px;
+    border-radius: 1rem;
+}
+
+
+
+

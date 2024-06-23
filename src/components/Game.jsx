@@ -17,12 +17,12 @@ export default function Game({ name, released, image, id }) {
   }
 
   return (
-    <motion.div variants={popUp} initial="hidden" animate="show" layoutId={stringPathId} onClick={handleDetail} className="game">
+    <div  onClick={handleDetail} className="game">
       <Link to={`/game/${id}`}>
-        <motion.h3 layoutId={`title ${stringPathId}`}>{name}</motion.h3>
+        <h3 >{name}</h3>
         <p>{released}</p>
-        {image && <div className="img-container"> <motion.img layoutId={`image ${stringPathId}`} src={smallImage(image, 640)} alt={name} /> </div>}
+        {image && <div className="img-container"> <img  src={smallImage(image, 640)} alt={name} /> </div>}
       </Link>
-    </motion.div>
+    </div>
   );
 }

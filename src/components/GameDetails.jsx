@@ -76,16 +76,16 @@ export default function GameDetails({ pathId }) {
   return (
     <>
       {!isLoading && (
-        <motion.div className="card-shadow" onClick={exitDetailsHandler}>
-          <motion.div layoutId={pathId} className="detail">
+        <div className="card-shadow" onClick={exitDetailsHandler}>
+          <div  className="detail">
             <div className="buton-div">
               <button className="x-close" onClick={exitDetailsHandler}>X</button>
             </div>
             <div className="stats">
               <div className="rating">
-                <motion.h3 layoutId={`title ${pathId}`}>
+                <h3 >
                   {details?.name}
-                </motion.h3>
+                </h3>
                 <p>Rating: {details.rating}</p>
                 {getStart()}
               </div>
@@ -95,16 +95,15 @@ export default function GameDetails({ pathId }) {
               </div>
             </div>
             <div className="media">
-              <motion.img
-                layoutId={`image ${pathId}`}
+              <img
                 src={details?.background_image}
                 alt="image"
               />
             </div>
             <div className="description">{details?.description_raw}</div>
             <div className="gallery">{screenArray}</div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       )}
     </>
   );
